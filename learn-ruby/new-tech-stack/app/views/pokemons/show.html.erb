@@ -1,0 +1,32 @@
+<div class="max-w-4xl mx-auto px-4 py-8">
+  <%= link_to "← Voltar para a Pokédex", pokemons_path, class: "text-blue-600 hover:text-blue-800 font-semibold mb-6 inline-block transition-colors" %>
+
+  <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden flex flex-col md:flex-row">
+    <div class="bg-gray-50 flex justify-center items-center p-12 md:w-2/5 border-r border-gray-100">
+      <img src="<%= @pokemon["image_url"] %>" alt="<%= @pokemon["name"] %>" class="w-56 h-56 object-contain rendering-pixelated">
+    </div>
+
+    <div class="p-8 md:w-3/5 flex flex-col justify-center">
+      <span class="text-lg text-gray-500 font-bold mb-1">#<%= @pokemon["id"] %></span>
+      <h1 class="text-4xl font-extrabold text-gray-900 capitalize mb-8"><%= @pokemon["name"] %></h1>
+
+      <hr class="border-gray-200 mb-8">
+
+      <%= form_with model: TeamPokemon.new, url: team_pokemons_path, method: :post, class: "flex flex-col gap-4" do |f| %>
+
+        <%= f.hidden_field :pokemon_id, value: @pokemon["id"] %>
+        <%= f.hidden_field :pokemon_name, value: @pokemon["name"] %>
+        <%= f.hidden_field :image_url, value: @pokemon["image_url"] %>
+
+        <div>
+          <%= f.label :nickname, "Apelido (Opcional)", class: "block text-sm font-medium text-gray-700 mb-1" %>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <%= f.text_field :nickname, placeholder: "Ex: Sparky...", class: "border border-gray-300 rounded-lg p-3 flex-grow shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+            <%= f.submit "Capturar para o Time", class: "bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-bold shadow-md cursor-pointer transition-colors" %>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="max-w-7xl mx-auto px-4 py-8">
+  <div class="flex justify-between items-center mb-8">
+    <h1 class="text-3xl font-bold text-gray-900">Pokédex</h1>
+    <%= link_to "Meu Time", team_pokemons_path, class: "bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" %>
+  </div>
+
+  <%= form_with url: pokemons_path, method: :get, class: "mb-8 flex gap-2" do |f| %>
+    <%= f.text_field :query, required: true, placeholder: "Busque por nome ou ID exato...", class: "border border-gray-300 rounded-lg p-3 w-full max-w-md shadow-sm" %>
+    <%= f.submit "Buscar", class: "bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold cursor-pointer" %>
+  <% end %>
+
+  <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+    <% @pokemons.each do |poke| %>
+      <%= link_to pokemon_path(poke["name"]), class: "border border-gray-200 rounded-xl p-4 flex flex-col items-center hover:shadow-lg transition-shadow bg-white" do %>
+        <img src="<%= poke["image_url"] %>" alt="<%= poke["name"] %>" class="w-24 h-24 object-contain rendering-pixelated">
+        <span class="capitalize font-bold text-gray-800 mt-3"><%= poke["name"] %></span>
+        <span class="text-gray-500 text-sm font-medium">#<%= poke["id"] %></span>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="mt-12 flex justify-center items-center gap-4">
+      <% if @pagy.page > 1 %>
+        <%= link_to "Anterior", pokemons_path(page: @pagy.page - 1), class: "px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg font-semibold text-gray-700 transition-colors" %>
+      <% else %>
+        <span class="px-4 py-2 bg-gray-100 rounded-lg font-semibold text-gray-400 cursor-not-allowed">Anterior</span>
+      <% end %>
+
+      <span class="px-4 py-2 font-bold text-gray-900 border border-gray-300 rounded-lg">
+        Página <%= @pagy.page %>
+      </span>
+
+      <% if @pagy.next %>
+        <%= link_to "Próxima", pokemons_path(page: @pagy.next), class: "px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg font-semibold text-gray-700 transition-colors" %>
+      <% else %>
+        <span class="px-4 py-2 bg-gray-100 rounded-lg font-semibold text-gray-400 cursor-not-allowed">Próxima</span>
+      <% end %>
+    </div>
+</div>

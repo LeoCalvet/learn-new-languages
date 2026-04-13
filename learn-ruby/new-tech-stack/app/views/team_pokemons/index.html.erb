@@ -1,0 +1,45 @@
+<div class="max-w-7xl mx-auto px-4 py-8">
+  <div class="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
+    <h1 class="text-3xl font-bold text-gray-900">Meu Time Pokémon (<%= @team_pokemons.count %>/6)</h1>
+    <%= link_to "← Explorar Pokédex", pokemons_path, class: "bg-blue-50 text-blue-700 hover:bg-blue-100 font-semibold py-2 px-4 rounded-lg transition-colors border border-blue-200" %>
+  </div>
+
+  <% if @team_pokemons.empty? %>
+    <div class="bg-gray-50 border-2 border-dashed border-gray-300 rounded-xl p-12 text-center">
+      <p class="text-gray-500 text-lg">Time está vazio</p>
+    </div>
+  <% else %>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <% @team_pokemons.each do |tp| %>
+        <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm hover:shadow-md transition-all relative flex flex-col gap-4">
+
+          <div class="flex justify-between items-start">
+            <div class="bg-gray-50 border border-gray-100 rounded-lg p-2">
+              <img src="<%= tp.image_url %>" alt="<%= tp.pokemon_name %>" class="w-20 h-20 object-contain rendering-pixelated">
+            </div>
+            <%= button_to team_pokemon_path(tp), method: :delete, data: { turbo_confirm: "Soltar este Pokémon?" }, class: "text-red-400 hover:text-red-600 transition-colors p-1" do %>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              </svg>
+            <% end %>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-gray-900 capitalize truncate">
+              <%= tp.nickname.presence || tp.pokemon_name %>
+            </h2>
+            <% if tp.nickname.present? %>
+              <p class="text-xs text-gray-400 uppercase tracking-wider font-bold mt-1"><%= tp.pokemon_name %></p>
+            <% end %>
+          </div>
+
+          <%= form_with model: tp, url: team_pokemon_path(tp), method: :patch, class: "mt-auto flex gap-2 pt-4 border-t border-gray-100" do |f| %>
+            <%= f.text_field :nickname, placeholder: "Novo apelido", class: "w-full text-sm border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500" %>
+            <%= f.submit "Salvar", class: "bg-gray-800 hover:bg-black text-white text-sm px-4 py-2 rounded-md cursor-pointer transition-colors" %>
+          <% end %>
+
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

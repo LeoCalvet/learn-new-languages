@@ -1,0 +1,31 @@
+services:
+    db:
+        image: postgres:16-alpine
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: odin_proj_development
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+        ports:
+            - "5432:5432"
+
+    rails:
+        build: .
+        command: bundle exec rails server -b 0.0.0.0 -p 3000
+        volumes:
+            - .:/rails # Hot reload - code changes reflect immediately
+            - gems:/usr/local/bundle # Persistent gems
+        ports:
+            - "3000:3000"
+        environment:
+            RAILS_ENV: development
+            DB_HOST: db
+            DB_USERNAME: postgres
+            DB_PASSWORD: postgres
+        depends_on:
+            - db
+
+volumes:
+    postgres_data:
+    gems:
