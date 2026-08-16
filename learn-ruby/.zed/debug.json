@@ -1,0 +1,9 @@
+[
+  {
+    "label": "Debug current Ruby file",
+    "adapter": "rdbg",
+    "request": "launch",
+    "script": "$ZED_FILE",
+    "cwd": "$ZED_WORKTREE_ROOT",
+  },
+]
