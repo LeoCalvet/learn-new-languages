@@ -13,6 +13,7 @@ services:
     rails:
         build: .
         command: bundle exec rails server -b 0.0.0.0 -p 3000
+        userns_mode: "keep-id"
         volumes:
             - .:/rails # Hot reload - code changes reflect immediately
             - gems:/usr/local/bundle # Persistent gems

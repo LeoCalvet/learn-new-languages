@@ -12,7 +12,7 @@
   <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
     <% @pokemons.each do |poke| %>
       <%= link_to pokemon_path(poke["name"]), class: "border border-gray-200 rounded-xl p-4 flex flex-col items-center hover:shadow-lg transition-shadow bg-white" do %>
-        <img src="<%= poke["image_url"] %>" alt="<%= poke["name"] %>" class="w-24 h-24 object-contain rendering-pixelated">
+        <%= image_tag poke["image_url"], alt: poke["name"], class: "w-24 h-24 object-contain rendering-pixelated" %>
         <span class="capitalize font-bold text-gray-800 mt-3"><%= poke["name"] %></span>
         <span class="text-gray-500 text-sm font-medium">#<%= poke["id"] %></span>
       <% end %>
