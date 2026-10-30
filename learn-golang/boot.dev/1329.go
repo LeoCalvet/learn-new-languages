@@ -48,12 +48,5 @@ e Joao venceu Y vezes"), onde 0 ≤ X e 0 ≤ Y.
 Mary won 3 times and John won 2 times
 Mary won 5 times and John won 1 times
 */
-func main() {
-
-	/**
-	 * Escreva a sua solução aqui
-	 * Code your solution here
-	 * Escriba su solución aquí
-	 */
-
+func main_1329() {
 }

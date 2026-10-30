@@ -74,12 +74,5 @@ NAO
 
 X Maratona de Programação IME-USP 2006.
 */
-func main() {
-
-	/**
-	 * Escreva a sua solução aqui
-	 * Code your solution here
-	 * Escriba su solución aquí
-	 */
-
+func main_1383() {
 }

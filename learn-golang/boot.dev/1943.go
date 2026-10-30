@@ -59,10 +59,9 @@ letra N pelo número da menor categoria que a colocação K pertence.
 
 III Maratona de Programação FACE - 2015
 */
-func main() {
+func main_1943() {
 	var chave_k int
 	_, err := fmt.Scanf("%d", &chave_k)
-
 	if err != nil {
 		fmt.Println(err)
 		return
