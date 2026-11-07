@@ -1,0 +1,5 @@
+func area()
+
+func main() {
+
+}
