@@ -45,5 +45,6 @@ func main() {
 	}
 
 	resultado := calculo_andar_final(string(data))
+
 	fmt.Printf("%d | %d\n", resultado.up, resultado.down)
 }
