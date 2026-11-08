@@ -1,6 +1,8 @@
 package main
 
 import "fmt"
+
+func main() {
 	var chave_P, chave_R bool
 
 	_, err := fmt.Scanf("%t %t", &chave_P, &chave_R)
