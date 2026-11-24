@@ -17,7 +17,33 @@ Here I will recreate, by hand, in Golang the following list of unix commands:
 
 ---
 
-# Cat
+# CLI
+
+When building CLI tools, keep these best practices in mind:
+
+- Use flags: Flags provide a convenient way for users to customize their experience.
+- Handle errors: Use Go’s error handling mechanisms to ensure that your program remains robust and reliable.
+- Document your tool: Provide clear documentation on how to use your command-line tool.
+
+Found this article: <https://go-cookbook.com/guides/building-cli-tools-in-go>
+
+The basics:
+
+- Parsing Flags and arguments
+- Structuring main()
+- - Keep business logic separately from argument parsing
+- main() DO NOT HAVE BUSINESS LOGIC
+
+Strandard Librarys
+
+- os package
+- filepath package
+- bufio for efficient I/O
+
+> but why bufio is good for i/o?
+> -
+
+## Cat
 
 Here do I start?
 
